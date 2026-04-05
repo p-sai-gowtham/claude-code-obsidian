@@ -19,7 +19,7 @@ You audit the Obsidian vault for a single repository project.
 
 1. Run the audit script:
    ```
-   node "C:/Users/puvvu/.claude/bin/vault-audit.js" "<repoRoot>"
+   node "~/.claude/bin/vault-audit.js" "<repoRoot>"
    ```
    The repo root will be provided via environment variable `CLAUDE_REPO_ROOT` or as an argument.
 

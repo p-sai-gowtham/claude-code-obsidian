@@ -16,7 +16,7 @@ This runs in a forked context as a single general-purpose agent. Do NOT attempt 
 
 ### Step 1: Run the deterministic scanner
 ```
-!`node "C:/Users/puvvu/.claude/bin/vault-scanner.js" "$CLAUDE_REPO_ROOT"`
+!`node "~/.claude/bin/vault-scanner.js" "$CLAUDE_REPO_ROOT"`
 ```
 This produces `file_inventory.json`, `dependency_edges.json`, `route_map.json`, and `scan_coverage.json` in `06_State/`.
 
@@ -67,7 +67,7 @@ Update these files to list all created notes:
 
 ### Step 7: Run the audit
 ```
-!`node "C:/Users/puvvu/.claude/bin/vault-audit.js" "$CLAUDE_REPO_ROOT"`
+!`node "~/.claude/bin/vault-audit.js" "$CLAUDE_REPO_ROOT"`
 ```
 Review audit output. Fix any invariant failures.
 

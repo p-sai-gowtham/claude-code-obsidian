@@ -11,12 +11,13 @@ Vault policy:
 - After edits, update the affected file note, feature hub, and change log.
 - Treat the codebase as source of truth. If vault and code disagree, fix the vault.
 - Every managed note must link to its project index and typed index note.
-- Every file note must link to a feature hub or [[50_Unclassified_Files]]. Never emit "None linked yet".
+- Every file note must link to a feature hub or the project's Unclassified index. Never emit "None linked yet".
 - Use wikilinks for all graph edges. No pseudo-folder links.
+- All index notes use project-prefixed names (e.g. ACMS_Project_Index) to prevent cross-project graph contamination.
 
 Vault schema (v2):
-- Vault root: C:/vaults/00_Vault_Home.md, C:/vaults/Projects_Index.md
-- Per project: 00_Project_Index, 10_File_Index, 20_Feature_Index, 30_Flow_Index, 40_Decision_Index, 50_Unclassified_Files
+- Vault root: 00_Vault_Home.md, Projects_Index.md (at $OBSIDIAN_VAULT_PATH)
+- Per project: <prefix>_Project_Index, <prefix>_File_Index, <prefix>_Feature_Index, <prefix>_Flow_Index, <prefix>_Decision_Index, <prefix>_Unclassified
 - State artifacts in 06_State/: manifest.json, file_inventory.json, dependency_edges.json, route_map.json, scan_coverage.json, orphan_report.md
 
 Vault skills (manual-only):

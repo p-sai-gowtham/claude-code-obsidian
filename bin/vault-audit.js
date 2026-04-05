@@ -13,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-const VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || "C:/vaults";
+const VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || (process.platform === "win32" ? "C:/vaults" : path.join(require("os").homedir(), "vaults"));
 const PROJECTS_FOLDER = "Projects";
 
 function repoKeyFromRoot(repoRoot) {

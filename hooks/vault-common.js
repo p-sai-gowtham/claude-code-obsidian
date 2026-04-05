@@ -3,11 +3,15 @@ const path = require("path");
 const crypto = require("crypto");
 const cp = require("child_process");
 
+function defaultVaultPath() {
+  if (process.env.OBSIDIAN_VAULT_PATH) return process.env.OBSIDIAN_VAULT_PATH;
+  if (process.platform === "win32") return "C:/vaults";
+  const home = process.env.HOME || require("os").homedir();
+  return path.join(home, "vaults");
+}
+
 const CONFIG = {
-  // Change this once if you do not want to use an env var.
-  vaultPath:
-    process.env.OBSIDIAN_VAULT_PATH ||
-    "C:/vaults",
+  vaultPath: defaultVaultPath(),
 
   projectsFolder: "Projects",
   largeFileBytes: 180000,

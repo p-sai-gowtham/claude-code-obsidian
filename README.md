@@ -118,34 +118,34 @@ node install.js
 
 ### What the Installer Does
 
-1. Copies 18 vault system files into `~/.claude/` (hooks, scripts, skills, agents)
+1. Copies all vault system files into `~/.claude/` (hooks, scripts, skills, agents)
 2. Merges vault hooks into your existing `settings.json` (preserves all other settings)
-3. Appends vault policy to `CLAUDE.md` (or creates it if missing)
-4. Creates vault root notes at `C:/vaults/` (`00_Vault_Home.md`, `Projects_Index.md`)
-5. Registers a Windows Task Scheduler job for 15-minute offline reconciliation
-6. Validates the entire installation and reports status
+3. **Persists `OBSIDIAN_VAULT_PATH`** in settings.json `env` so all hooks use the correct vault location
+4. Appends vault policy to `CLAUDE.md` (or creates it if missing)
+5. Creates vault root notes (`00_Vault_Home.md`, `Projects_Index.md`)
+6. **Auto-detects your OS** and registers the appropriate scheduler:
+   - **Windows**: Task Scheduler (`schtasks`)
+   - **macOS**: LaunchAgent (`launchctl`)
+   - **Linux**: Cron job (`crontab`)
+7. Validates the entire installation and reports status
 
-The install is **idempotent** — running it again won't duplicate anything.
+The install is **idempotent** — running it again updates files and won't duplicate hooks.
 
 ### Options
 
 ```bash
-# Custom vault location (default: C:/vaults)
+# Custom vault location (default: C:/vaults on Windows, ~/vaults elsewhere)
 node install.js --vault-path "D:/my-obsidian-vault"
 
-# Skip Windows Task Scheduler (for Linux/Mac or manual setup)
+# Skip scheduler registration
 node install.js --skip-scheduler
 ```
 
 ### Linux / macOS
 
 ```bash
-node install.js --skip-scheduler --vault-path "$HOME/vaults"
-
-# Then add to crontab for offline reconciliation:
-crontab -e
-# Add this line:
-# */15 * * * * node ~/.claude/bin/vault-reconcile-scheduled.js
+# Installer auto-detects: LaunchAgent on macOS, cron on Linux
+node install.js --vault-path "$HOME/vaults"
 ```
 
 ### Open the Vault in Obsidian

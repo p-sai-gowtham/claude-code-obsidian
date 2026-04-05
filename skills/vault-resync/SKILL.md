@@ -40,7 +40,7 @@ Update `10_File_Index.md`, `20_Feature_Index.md`, etc. to reflect any new/remove
 
 ### Step 5: Run audit
 ```
-!`node "C:/Users/puvvu/.claude/bin/vault-audit.js" "$CLAUDE_REPO_ROOT"`
+!`node "~/.claude/bin/vault-audit.js" "$CLAUDE_REPO_ROOT"`
 ```
 Fix any invariant failures found.
 

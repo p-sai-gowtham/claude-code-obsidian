@@ -18,7 +18,7 @@ const crypto = require("crypto");
 
 // ── Config ──────────────────────────────────────────────────────────────────
 
-const VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || "C:/vaults";
+const VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || (process.platform === "win32" ? "C:/vaults" : path.join(require("os").homedir(), "vaults"));
 const PROJECTS_FOLDER = "Projects";
 const LARGE_FILE_BYTES = 180000;
 const HUGE_FILE_LINES = 3000;
